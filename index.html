@@ -1,1 +1,1429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Garage Club</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #101114;
+      --card: #191b20;
+      --card2: #24272d;
+      --text: #ffffff;
+      --muted: #aeb2ba;
+      --red: #ff4b2b;
+      --red2: #ff6b45;
+      --border: #30343b;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* =========================
+       CABEÇALHO
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(16, 17, 20, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 25px;
+
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .logo span {
+      color: var(--red);
+    }
+
+    nav {
+      margin-left: auto;
+
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: var(--red);
+    }
+
+    /* =========================
+       PERFIL
+    ========================= */
+
+    .profile {
+      max-width: 1200px;
+      margin: 25px auto 0;
+      padding: 0 25px;
+
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .avatar {
+      width: 62px;
+      height: 62px;
+
+      border-radius: 50%;
+      overflow: hidden;
+
+      border: 3px solid var(--red);
+
+      background: #25272d;
+      flex-shrink: 0;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      display: block;
+    }
+
+    .profile h4 {
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .profile small {
+      color: var(--muted);
+    }
+
+    /* =========================
+       CAPA
+    ========================= */
+
+    .hero {
+      max-width: 1200px;
+      min-height: 410px;
+
+      margin: 30px auto;
+      padding: 55px 40px;
+
+      border-radius: 22px;
+
+      display: flex;
+      align-items: center;
+
+      position: relative;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(10, 10, 12, 0.96),
+          rgba(10, 10, 12, 0.58)
+        ),
+        url("IMG_8075.jpeg");
+
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-content {
+      max-width: 590px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      color: #ff927b;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      line-height: 1.02;
+
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--red);
+    }
+
+    .hero p {
+      color: #d2d4d9;
+      line-height: 1.6;
+
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+
+      padding: 13px 18px;
+
+      border-radius: 10px;
+
+      background: var(--red);
+      color: white;
+
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background: var(--red2);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid #555;
+
+      margin-left: 8px;
+    }
+
+    /* =========================
+       CONTEÚDO
+    ========================= */
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+
+      padding: 25px;
+    }
+
+    .section-title {
+      font-size: 29px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    /* =========================
+       PESQUISA
+    ========================= */
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      margin-bottom: 25px;
+    }
+
+    .search {
+      flex: 1;
+      min-width: 240px;
+
+      background: var(--card);
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      padding: 13px 15px;
+
+      color: white;
+      outline: none;
+    }
+
+    .search:focus {
+      border-color: var(--red);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter {
+      padding: 11px 14px;
+
+      border-radius: 9px;
+
+      border: 1px solid var(--border);
+
+      background: var(--card);
+      color: white;
+
+      cursor: pointer;
+
+      font-weight: bold;
+    }
+
+    .filter:hover,
+    .filter.active {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    /* =========================
+       CARDS
+    ========================= */
+
+    .grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 17px;
+
+      overflow: hidden;
+
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #555;
+    }
+
+    /* =========================
+       IMAGEM DO CARRO
+    ========================= */
+
+    .car-image {
+      height: 250px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #292d35,
+          #111318
+        );
+
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      overflow: hidden;
+    }
+
+    /*
+      IMPORTANTE:
+      object-fit: contain faz a foto inteira aparecer
+      sem cortar o carro.
+    */
+
+    .car-image img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      object-position: center;
+
+      display: block;
+
+      padding: 8px;
+    }
+
+    .badge {
+      position: absolute;
+
+      top: 12px;
+      left: 12px;
+
+      z-index: 3;
+
+      background: rgba(10, 10, 10, 0.85);
+
+      border: 1px solid #555;
+
+      padding: 7px 10px;
+
+      border-radius: 20px;
+
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .favorite {
+      position: absolute;
+
+      top: 10px;
+      right: 10px;
+
+      z-index: 3;
+
+      width: 38px;
+      height: 38px;
+
+      border-radius: 50%;
+
+      border: 1px solid #555;
+
+      background: rgba(10, 10, 10, 0.85);
+
+      color: white;
+
+      font-size: 20px;
+
+      cursor: pointer;
+    }
+
+    .favorite.active {
+      color: var(--red);
+    }
+
+    /* =========================
+       CORPO DO CARD
+    ========================= */
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .brand {
+      color: var(--red2);
+
+      font-size: 11px;
+
+      font-weight: 900;
+
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      font-size: 23px;
+
+      margin: 7px 0;
+    }
+
+    .description {
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.5;
+
+      min-height: 40px;
+    }
+
+    /* =========================
+       INFORMAÇÕES
+    ========================= */
+
+    .specs {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 7px;
+
+      margin: 16px 0;
+    }
+
+    .spec {
+      background: var(--card2);
+
+      border-radius: 8px;
+
+      padding: 9px 5px;
+
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 10px;
+    }
+
+    .spec strong {
+      display: block;
+
+      color: white;
+
+      font-size: 12px;
+
+      margin-bottom: 3px;
+    }
+
+    /* =========================
+       BOTÃO
+    ========================= */
+
+    .details-button {
+      width: 100%;
+
+      padding: 11px;
+
+      background: transparent;
+
+      border: 1px solid var(--border);
+
+      border-radius: 8px;
+
+      color: white;
+
+      cursor: pointer;
+
+      font-weight: bold;
+    }
+
+    .details-button:hover {
+      background: #292c33;
+    }
+
+    /* =========================
+       COMENTÁRIOS
+    ========================= */
+
+    .comments {
+      border-top: 1px solid var(--border);
+
+      margin-top: 16px;
+
+      padding-top: 14px;
+    }
+
+    .comments-title {
+      font-size: 12px;
+
+      font-weight: bold;
+
+      margin-bottom: 10px;
+    }
+
+    .comment-row {
+      display: flex;
+
+      gap: 6px;
+    }
+
+    .comment-row input {
+      min-width: 0;
+
+      flex: 1;
+
+      background: #111318;
+
+      border: 1px solid var(--border);
+
+      border-radius: 7px;
+
+      color: white;
+
+      padding: 9px;
+
+      font-size: 12px;
+    }
+
+    .comment-row button {
+      background: var(--red);
+
+      border: none;
+
+      color: white;
+
+      border-radius: 7px;
+
+      padding: 9px 12px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+    }
+
+    /* =========================
+       SOBRE
+    ========================= */
+
+    .about {
+      margin-top: 40px;
+
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 18px;
+
+      padding: 28px;
+    }
+
+    .about p {
+      color: var(--muted);
+
+      line-height: 1.7;
+
+      margin-top: 10px;
+    }
+
+    /* =========================
+       RODAPÉ
+    ========================= */
+
+    footer {
+      text-align: center;
+
+      color: #777;
+
+      border-top: 1px solid var(--border);
+
+      padding: 25px;
+
+      margin-top: 40px;
+    }
+
+    /* =========================
+       RESPONSIVO
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero h1 {
+        font-size: 50px;
+      }
+
+    }
+
+    @media (max-width: 620px) {
+
+      nav {
+        gap: 10px;
+      }
+
+      nav a:nth-child(n+3) {
+        display: none;
+      }
+
+      .profile {
+        padding: 0 15px;
+      }
+
+      .container {
+        padding: 20px 15px;
+      }
+
+      .hero {
+        margin: 20px 15px;
+
+        padding: 35px 22px;
+
+        min-height: 390px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .car-image {
+        height: 250px;
+      }
+
+      .btn.secondary {
+        margin-left: 0;
+        margin-top: 8px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       CABEÇALHO
+  ========================== -->
+
+  <header>
+
+    <div class="navbar">
+
+      <div class="logo">
+        GARAGE<span>CLUB</span>
+      </div>
+
+      <nav>
+
+        <a href="#inicio">
+          Início
+        </a>
+
+        <a href="#explorar">
+          Explorar
+        </a>
+
+        <a href="#favoritos">
+          ❤️ Favoritos
+        </a>
+
+        <a href="#sobre">
+          Sobre
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       PERFIL
+  ========================== -->
+
+  <div class="profile">
+
+    <div class="avatar">
+
+      <img
+        src="9241bd92-98db-41fc-8868-b67cd8b91c73.jpeg"
+        alt="Minha foto"
+      >
+
+    </div>
+
+    <div>
+
+      <h4>
+        Seu perfil
+      </h4>
+
+      <small>
+        Personalize seu Garage Club
+      </small>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       CAPA
+  ========================== -->
+
+  <section
+    class="hero"
+    id="inicio"
+  >
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        GARAGE CLUB • EDIÇÃO PREMIUM
+      </div>
+
+      <h1>
+        Onde a paixão por
+        <span>carros</span>
+        começa.
+      </h1>
+
+      <p>
+        Descubra máquinas incríveis,
+        compare modelos, monte sua garagem
+        e compartilhe sua paixão por quatro rodas.
+      </p>
+
+      <a
+        href="#explorar"
+        class="btn"
+      >
+        Explorar carros →
+      </a>
+
+      <a
+        href="#sobre"
+        class="btn secondary"
+      >
+        Conhecer o blog
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       EXPLORAR
+  ========================== -->
+
+  <main
+    class="container"
+    id="explorar"
+  >
+
+    <h2 class="section-title">
+      🔎 Explore a garagem
+    </h2>
+
+    <p class="subtitle">
+      Pesquise por nome, marca ou categoria.
+    </p>
+
+
+    <!-- PESQUISA -->
+
+    <div class="controls">
+
+      <input
+        type="text"
+        id="search"
+        class="search"
+        placeholder="Ex.: BMW, Supra, Porsche..."
+      >
+
+      <div class="filters">
+
+        <button
+          class="filter active"
+          data-category="Todos"
+        >
+          Todos
+        </button>
+
+        <button
+          class="filter"
+          data-category="Esportivo"
+        >
+          🏎 Esportivos
+        </button>
+
+        <button
+          class="filter"
+          data-category="Clássico"
+        >
+          🏁 Clássicos
+        </button>
+
+        <button
+          class="filter"
+          data-category="JDM"
+        >
+          🇯🇵 JDM
+        </button>
+
+        <button
+          class="filter"
+          data-category="Luxo"
+        >
+          💎 Luxo
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- CARROS -->
+
+    <div
+      class="grid"
+      id="grid"
+    ></div>
+
+  </main>
+
+
+  <!-- =========================
+       SOBRE
+  ========================== -->
+
+  <section
+    class="container"
+    id="sobre"
+  >
+
+    <div class="about">
+
+      <h2>
+        Sobre o Garage Club
+      </h2>
+
+      <p>
+        Um espaço para conhecer carros esportivos,
+        clássicos, JDM e modelos de luxo.
+        Escolha seus favoritos, veja as especificações
+        e compartilhe sua paixão por carros.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       RODAPÉ
+  ========================== -->
+
+  <footer>
+
+    Garage Club • Edição Premium 🚗
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    /*
+      LISTA DOS CARROS
+
+      Os nomes das imagens precisam ser
+      exatamente iguais aos arquivos
+      que estão no seu GitHub.
+    */
+
+    const cars = [
+
+      {
+        name: "BMW M3",
+        brand: "BMW",
+        category: "Esportivo",
+        image: "IMG_8075.jpeg",
+        description:
+          "Desempenho e tecnologia em um dos esportivos mais famosos da BMW.",
+        power: "510 cv",
+        zero: "3,9 s",
+        engine: "3.0 biturbo"
+      },
+
+      {
+        name: "Ford Mustang",
+        brand: "Ford",
+        category: "Clássico",
+        image: "IMG_8076.jpeg",
+        description:
+          "Um ícone americano que atravessou gerações.",
+        power: "486 cv",
+        zero: "4,4 s",
+        engine: "5.0 V8"
+      },
+
+      {
+        name: "Toyota Supra",
+        brand: "Toyota",
+        category: "JDM",
+        image: "IMG_8077.jpeg",
+        description:
+          "Um dos esportivos japoneses mais admirados pelos fãs de JDM.",
+        power: "387 cv",
+        zero: "4,1 s",
+        engine: "3.0 turbo"
+      },
+
+      {
+        name: "Nissan GT-R",
+        brand: "Nissan",
+        category: "JDM",
+        image: "IMG_8078.jpeg",
+        description:
+          "Tecnologia e desempenho reunidos em uma máquina japonesa.",
+        power: "565 cv",
+        zero: "2,9 s",
+        engine: "3.8 V6 biturbo"
+      },
+
+      {
+        name: "Honda Civic Type R",
+        brand: "Honda",
+        category: "JDM",
+        image: "IMG_8079.jpeg",
+        description:
+          "Um Civic transformado em uma verdadeira máquina esportiva.",
+        power: "320 cv",
+        zero: "5,4 s",
+        engine: "2.0 turbo"
+      },
+
+      {
+        name: "Chevrolet Camaro",
+        brand: "Chevrolet",
+        category: "Clássico",
+        image: "IMG_8080.jpeg",
+        description:
+          "Um dos grandes nomes da história dos muscle cars.",
+        power: "461 cv",
+        zero: "4,2 s",
+        engine: "6.2 V8"
+      },
+
+      {
+        name: "Porsche 911",
+        brand: "Porsche",
+        category: "Luxo",
+        image: "IMG_8081.jpeg",
+        description:
+          "Tradição, luxo e desempenho em um design inconfundível.",
+        power: "480 cv",
+        zero: "3,4 s",
+        engine: "3.0 biturbo"
+      },
+
+      {
+        name: "Lamborghini Huracán",
+        brand: "Lamborghini",
+        category: "Luxo",
+        image: "IMG_8082.jpeg",
+        description:
+          "Superesportivo italiano com design impossível de ignorar.",
+        power: "640 cv",
+        zero: "2,9 s",
+        engine: "5.2 V10"
+      },
+
+      {
+        name: "BMW M4",
+        brand: "BMW",
+        category: "Esportivo",
+        image: "IMG_8083.jpeg",
+        description:
+          "Cupê esportivo com visual agressivo e muita tecnologia.",
+        power: "503 cv",
+        zero: "3,8 s",
+        engine: "3.0 biturbo"
+      }
+
+    ];
+
+
+    /* =========================
+       VARIÁVEIS
+    ========================== */
+
+    let currentCategory = "Todos";
+
+    let favorites =
+      JSON.parse(
+        localStorage.getItem("garageFavorites") || "[]"
+      );
+
+
+    /* =========================
+       RENDERIZAR CARROS
+    ========================== */
+
+    function renderCars() {
+
+      const grid =
+        document.getElementById("grid");
+
+      const search =
+        document
+          .getElementById("search")
+          .value
+          .toLowerCase()
+          .trim();
+
+
+      const filteredCars =
+        cars.filter(function(car) {
+
+          const categoryOK =
+            currentCategory === "Todos" ||
+            car.category === currentCategory;
+
+
+          const searchOK =
+            search === "" ||
+            (
+              car.name +
+              " " +
+              car.brand +
+              " " +
+              car.category
+            )
+              .toLowerCase()
+              .includes(search);
+
+
+          return categoryOK && searchOK;
+
+        });
+
+
+      if (filteredCars.length === 0) {
+
+        grid.innerHTML = `
+          <div class="empty">
+            Nenhum carro encontrado 😕
+          </div>
+        `;
+
+        return;
+      }
+
+
+      grid.innerHTML =
+        filteredCars
+          .map(function(car, index) {
+
+            const isFavorite =
+              favorites.includes(car.name);
+
+
+            return `
+
+              <article class="card">
+
+
+                <div class="car-image">
+
+                  <span class="badge">
+                    ${car.category}
+                  </span>
+
+
+                  <button
+                    class="favorite ${
+                      isFavorite ? "active" : ""
+                    }"
+                    onclick="toggleFavorite('${car.name}')"
+                  >
+                    ${
+                      isFavorite
+                        ? "♥"
+                        : "♡"
+                    }
+                  </button>
+
+
+                  <img
+                    src="${car.image}"
+                    alt="${car.name}"
+                    onerror="imageError(this)"
+                  >
+
+                </div>
+
+
+                <div class="card-body">
+
+
+                  <div class="brand">
+                    ${car.brand}
+                  </div>
+
+
+                  <h3>
+                    ${car.name}
+                  </h3>
+
+
+                  <p class="description">
+                    ${car.description}
+                  </p>
+
+
+                  <div class="specs">
+
+
+                    <div class="spec">
+
+                      <strong>
+                        ${car.power}
+                      </strong>
+
+                      Potência
+
+                    </div>
+
+
+                    <div class="spec">
+
+                      <strong>
+                        ${car.zero}
+                      </strong>
+
+                      0–100 km/h
+
+                    </div>
+
+
+                    <div class="spec">
+
+                      <strong>
+                        ${car.engine}
+                      </strong>
+
+                      Motor
+
+                    </div>
+
+
+                  </div>
+
+
+                  <button
+                    class="details-button"
+                    onclick="showDetails('${car.name}')"
+                  >
+                    Ver ficha completa
+                  </button>
+
+
+                  <div class="comments">
+
+                    <div class="comments-title">
+                      💬 Comentários
+                    </div>
+
+
+                    <div class="comment-row">
+
+                      <input
+                        id="comment-${index}"
+                        type="text"
+                        placeholder="Seu comentário..."
+                      >
+
+
+                      <button
+                        onclick="sendComment(${index})"
+                      >
+                        Enviar
+                      </button>
+
+                    </div>
+
+                  </div>
+
+
+                </div>
+
+              </article>
+
+            `;
+
+          })
+          .join("");
+
+    }
+
+
+    /* =========================
+       ERRO DE IMAGEM
+    ========================== */
+
+    function imageError(img) {
+
+      img.style.display = "none";
+
+    }
+
+
+    /* =========================
+       FAVORITOS
+    ========================== */
+
+    function toggleFavorite(name) {
+
+      if (favorites.includes(name)) {
+
+        favorites =
+          favorites.filter(
+            function(item) {
+              return item !== name;
+            }
+          );
+
+      } else {
+
+        favorites.push(name);
+
+      }
+
+
+      localStorage.setItem(
+        "garageFavorites",
+        JSON.stringify(favorites)
+      );
+
+
+      renderCars();
+
+    }
+
+
+    /* =========================
+       FICHA COMPLETA
+    ========================== */
+
+    function showDetails(name) {
+
+      const car =
+        cars.find(
+          function(item) {
+            return item.name === name;
+          }
+        );
+
+
+      if (!car) {
+        return;
+      }
+
+
+      alert(
+        car.name +
+        "\n\n" +
+
+        car.description +
+
+        "\n\nPotência: " +
+        car.power +
+
+        "\n0–100 km/h: " +
+        car.zero +
+
+        "\nMotor: " +
+        car.engine
+      );
+
+    }
+
+
+    /* =========================
+       COMENTÁRIO
+    ========================== */
+
+    function sendComment(index) {
+
+      const input =
+        document.getElementById(
+          "comment-" + index
+        );
+
+
+      if (
+        input &&
+        input.value.trim() !== ""
+      ) {
+
+        alert(
+          "Comentário enviado! 💗"
+        );
+
+        input.value = "";
+
+      }
+
+    }
+
+
+    /* =========================
+       FILTROS
+    ========================== */
+
+    const filterButtons =
+      document.querySelectorAll(
+        ".filter"
+      );
+
+
+    filterButtons.forEach(
+      function(button) {
+
+        button.addEventListener(
+          "click",
+          function() {
+
+
+            filterButtons.forEach(
+              function(item) {
+                item.classList.remove(
+                  "active"
+                );
+              }
+            );
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            currentCategory =
+              button.dataset.category;
+
+
+            renderCars();
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =========================
+       PESQUISA
+    ========================== */
+
+    document
+      .getElementById("search")
+      .addEventListener(
+        "input",
+        renderCars
+      );
+
+
+    /* =========================
+       INICIAR
+    ========================== */
+
+    renderCars();
+
+  </script>
+
+</body>
+
+</html>
