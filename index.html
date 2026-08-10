@@ -1,1 +1,2521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Garage Club</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#101114;
+    color:#fff;
+}
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(16,17,20,.95);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #30333a;
+}
+
+.nav{
+    max-width:1200px;
+    margin:auto;
+    padding:17px 22px;
+
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:900;
+}
+
+.logo span{
+    color:#ff4b2b;
+}
+
+nav{
+    margin-left:auto;
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#ff4b2b;
+}
+
+/* =========================
+   PERFIL
+========================= */
+
+.profile{
+    max-width:1200px;
+    margin:20px auto;
+    padding:0 22px;
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.avatar{
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+    overflow:hidden;
+
+    border:3px solid #ff4b2b;
+
+    background:#292c33;
+}
+
+.avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    max-width:1200px;
+    min-height:410px;
+
+    margin:25px auto;
+
+    padding:55px 35px;
+
+    border-radius:22px;
+
+    display:flex;
+    align-items:center;
+
+    position:relative;
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(8,8,10,.95),
+        rgba(8,8,10,.55)
+    ),
+    url("IMG_8075.jpeg");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.hero-content{
+    max-width:600px;
+}
+
+.eyebrow{
+    color:#ff9078;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.hero h1{
+    font-size:clamp(40px,6vw,70px);
+    line-height:1;
+
+    margin:15px 0;
+}
+
+.hero h1 span{
+    color:#ff4b2b;
+}
+
+.hero p{
+    color:#d0d0d0;
+    line-height:1.6;
+    font-size:16px;
+}
+
+.hero-buttons{
+    margin-top:25px;
+
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:13px 18px;
+
+    border-radius:10px;
+
+    background:#ff4b2b;
+    color:#fff;
+
+    border:1px solid #ff4b2b;
+
+    text-decoration:none;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.btn.secondary{
+    background:transparent;
+    border-color:#555;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px 22px;
+}
+
+.section-title{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#999;
+    margin-bottom:22px;
+}
+
+/* =========================
+   PESQUISA
+========================= */
+
+.search{
+    width:100%;
+
+    padding:14px 16px;
+
+    background:#191b20;
+
+    border:1px solid #333;
+
+    border-radius:10px;
+
+    color:white;
+
+    outline:none;
+
+    margin-bottom:15px;
+}
+
+.search:focus{
+    border-color:#ff4b2b;
+}
+
+.filters{
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+}
+
+.filter{
+    background:#191b20;
+
+    border:1px solid #333;
+
+    color:#ddd;
+
+    padding:10px 14px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.filter:hover,
+.filter.active{
+    background:#ff4b2b;
+    border-color:#ff4b2b;
+    color:#fff;
+}
+
+/* =========================
+   CARROS
+========================= */
+
+.grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+    gap:20px;
+}
+
+.card{
+    background:#191b20;
+
+    border:1px solid #30333a;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    border-color:#555;
+}
+
+/* =========================
+   IMAGEM
+========================= */
+
+.car-image{
+    height:230px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #292d35,
+        #111318
+    );
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.car-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    object-position:center;
+
+    display:block;
+
+    padding:8px;
+}
+
+.badge{
+    position:absolute;
+
+    top:12px;
+    left:12px;
+
+    z-index:5;
+
+    background:rgba(0,0,0,.85);
+
+    border:1px solid #555;
+
+    padding:7px 10px;
+
+    border-radius:20px;
+
+    font-size:11px;
+    font-weight:bold;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card-body{
+    padding:18px;
+}
+
+.brand{
+    color:#ff6348;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+}
+
+.card h3{
+    font-size:23px;
+
+    margin:7px 0;
+}
+
+.card-description{
+    color:#aaa;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    min-height:42px;
+}
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:7px;
+
+    margin:16px 0;
+}
+
+.stat{
+    background:#24272d;
+
+    border-radius:8px;
+
+    padding:9px 5px;
+
+    text-align:center;
+
+    color:#999;
+
+    font-size:10px;
+}
+
+.stat strong{
+    display:block;
+
+    color:#fff;
+
+    font-size:12px;
+
+    margin-bottom:3px;
+}
+
+/* =========================
+   AÇÕES
+========================= */
+
+.actions{
+    display:flex;
+    gap:8px;
+}
+
+.action-btn{
+    flex:1;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    border:1px solid #383b42;
+
+    background:#22252b;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.action-btn:hover{
+    background:#30343b;
+}
+
+.like-btn.liked{
+    color:#ff4b5b;
+    border-color:#ff4b5b;
+}
+
+.favorite-btn.favorited{
+    color:#ffd15c;
+    border-color:#ffd15c;
+}
+
+/* =========================
+   COMENTÁRIOS
+========================= */
+
+.comments{
+    border-top:1px solid #30333a;
+
+    margin-top:15px;
+
+    padding-top:13px;
+}
+
+.comments-title{
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-bottom:9px;
+}
+
+.comment-row{
+    display:flex;
+    gap:6px;
+}
+
+.comment-row input{
+    min-width:0;
+
+    flex:1;
+
+    background:#111318;
+
+    border:1px solid #333;
+
+    color:#fff;
+
+    border-radius:7px;
+
+    padding:9px;
+
+    font-size:12px;
+}
+
+.comment-row button{
+    background:#ff4b2b;
+
+    border:0;
+
+    color:#fff;
+
+    border-radius:7px;
+
+    padding:9px 12px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.comment-list{
+    margin-top:9px;
+
+    color:#aaa;
+
+    font-size:12px;
+
+    line-height:1.6;
+}
+
+/* =========================
+   FAVORITOS
+========================= */
+
+.favorites-section{
+    margin-top:40px;
+
+    background:#191b20;
+
+    border:1px solid #30333a;
+
+    border-radius:16px;
+
+    padding:25px;
+}
+
+.favorite-list{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:12px;
+
+    margin-top:15px;
+}
+
+.favorite-item{
+    background:#24272d;
+
+    border-radius:10px;
+
+    padding:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+}
+
+.favorite-item span{
+    font-weight:bold;
+}
+
+.favorite-item button{
+    border:0;
+
+    background:transparent;
+
+    color:#ff4b2b;
+
+    cursor:pointer;
+}
+
+/* =========================
+   COMPARADOR
+========================= */
+
+.compare-box{
+    margin-top:40px;
+
+    background:#191b20;
+
+    border:1px solid #30333a;
+
+    border-radius:16px;
+
+    padding:25px;
+}
+
+.compare-selects{
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin:18px 0;
+}
+
+.compare-select{
+    flex:1;
+
+    min-width:220px;
+
+    padding:12px;
+
+    border-radius:9px;
+
+    background:#24272d;
+
+    color:white;
+
+    border:1px solid #444;
+}
+
+.comparison{
+    overflow-x:auto;
+}
+
+.comparison table{
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:15px;
+}
+
+.comparison th,
+.comparison td{
+    padding:12px;
+
+    border-bottom:1px solid #333;
+
+    text-align:left;
+}
+
+.comparison th{
+    color:#ff6348;
+}
+
+/* =========================
+   MODAL / FICHA COMPLETA
+========================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    z-index:200;
+
+    background:rgba(0,0,0,.82);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    overflow:auto;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(850px,100%);
+
+    max-height:92vh;
+
+    overflow:auto;
+
+    background:#181a1f;
+
+    border:1px solid #444;
+
+    border-radius:18px;
+}
+
+.modal-header{
+    padding:22px;
+
+    border-bottom:1px solid #333;
+
+    position:relative;
+}
+
+.modal-header h2{
+    font-size:30px;
+
+    margin-bottom:5px;
+}
+
+.modal-header p{
+    color:#999;
+}
+
+.close-modal{
+    position:absolute;
+
+    right:18px;
+    top:18px;
+
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    background:#25272d;
+
+    color:#fff;
+
+    border:1px solid #555;
+
+    cursor:pointer;
+
+    font-size:20px;
+}
+
+.modal-car-image{
+    height:300px;
+
+    background:#101114;
+}
+
+.modal-car-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    display:block;
+}
+
+.full-info{
+    padding:22px;
+}
+
+.info-grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:10px;
+
+    margin-bottom:25px;
+}
+
+.info-box{
+    background:#24272d;
+
+    border-radius:9px;
+
+    padding:13px;
+}
+
+.info-box small{
+    color:#888;
+
+    display:block;
+
+    margin-bottom:5px;
+}
+
+.info-box strong{
+    font-size:15px;
+}
+
+.full-info h3{
+    margin:20px 0 9px;
+
+    color:#ff6348;
+}
+
+.full-info p{
+    color:#bbb;
+
+    line-height:1.7;
+}
+
+/* =========================
+   SOBRE
+========================= */
+
+.about{
+    margin-top:45px;
+
+    background:#191b20;
+
+    border:1px solid #30333a;
+
+    border-radius:16px;
+
+    padding:25px;
+}
+
+.about p{
+    color:#aaa;
+
+    line-height:1.7;
+
+    margin-top:10px;
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+
+footer{
+    text-align:center;
+
+    color:#777;
+
+    border-top:1px solid #30333a;
+
+    padding:30px;
+
+    margin-top:45px;
+}
+
+/* =========================
+   CELULAR
+========================= */
+
+@media(max-width:900px){
+
+    .grid{
+        grid-template-columns:
+        repeat(2,minmax(0,1fr));
+    }
+
+    .favorite-list{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .nav{
+        padding:13px 15px;
+    }
+
+    nav{
+        gap:10px;
+    }
+
+    nav a{
+        font-size:11px;
+    }
+
+    .profile{
+        padding:0 15px;
+    }
+
+    .hero{
+        margin:18px 15px;
+
+        padding:35px 22px;
+
+        min-height:420px;
+    }
+
+    .container{
+        padding:25px 15px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .favorite-list{
+        grid-template-columns:1fr;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .modal-car-image{
+        height:230px;
+    }
+
+    .car-image{
+        height:240px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     MENU
+========================= -->
+
+<header>
+
+<div class="nav">
+
+<div class="logo">
+GARAGE<span>CLUB</span>
+</div>
+
+<nav>
+
+<a href="#inicio">Início</a>
+
+<a href="#explorar">Explorar</a>
+
+<a href="#comparar">Comparar</a>
+
+<a href="#favoritos">❤️ Favoritos</a>
+
+<a href="#sobre">Sobre</a>
+
+</nav>
+
+</div>
+
+</header>
+
+
+<!-- =========================
+     PERFIL
+========================= -->
+
+<div class="profile">
+
+<div class="avatar">
+
+<img
+src="9241bd92-98db-41fc-8868-b67cd8b91c73.jpeg"
+alt="Minha foto"
+>
+
+</div>
+
+<div>
+
+<h4>Seu perfil</h4>
+
+<small>
+Personalize seu Garage Club
+</small>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section
+class="hero"
+id="inicio"
+>
+
+<div class="hero-content">
+
+<div class="eyebrow">
+GARAGE CLUB • EDIÇÃO PREMIUM
+</div>
+
+<h1>
+Onde a paixão por
+<span>carros</span>
+começa.
+</h1>
+
+<p>
+Descubra máquinas incríveis,
+compare modelos, conheça histórias
+e compartilhe sua paixão por quatro rodas.
+</p>
+
+<div class="hero-buttons">
+
+<a
+href="#explorar"
+class="btn"
+>
+Explorar carros →
+</a>
+
+<a
+href="#sobre"
+class="btn secondary"
+>
+Conhecer o blog
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     EXPLORAR
+========================= -->
+
+<section
+class="container"
+id="explorar"
+>
+
+<h2 class="section-title">
+🔎 Explore a garagem
+</h2>
+
+<p class="subtitle">
+Pesquise por nome, marca ou categoria.
+</p>
+
+<input
+class="search"
+id="search"
+placeholder="Ex.: BMW, Supra, Porsche..."
+>
+
+
+<div class="filters">
+
+<button
+class="filter active"
+data-category="Todos"
+>
+Todos
+</button>
+
+<button
+class="filter"
+data-category="Esportivo"
+>
+🏎️ Esportivos
+</button>
+
+<button
+class="filter"
+data-category="Clássico"
+>
+🏁 Clássicos
+</button>
+
+<button
+class="filter"
+data-category="JDM"
+>
+🇯🇵 JDM
+</button>
+
+<button
+class="filter"
+data-category="Luxo"
+>
+💎 Luxo
+</button>
+
+</div>
+
+
+<div
+class="grid"
+id="grid"
+></div>
+
+</section>
+
+
+<!-- =========================
+     FAVORITOS
+========================= -->
+
+<section
+class="container"
+id="favoritos"
+>
+
+<div class="favorites-section">
+
+<h2>
+❤️ Seus favoritos
+</h2>
+
+<p
+class="subtitle"
+>
+Os carros que você favoritou aparecem aqui.
+</p>
+
+<div
+class="favorite-list"
+id="favoriteList"
+>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     COMPARAR
+========================= -->
+
+<section
+class="container"
+id="comparar"
+>
+
+<div class="compare-box">
+
+<h2>
+⚖️ Comparar carros
+</h2>
+
+<p class="subtitle">
+Escolha dois carros e compare suas principais informações.
+</p>
+
+<div class="compare-selects">
+
+<select
+class="compare-select"
+id="carA"
+>
+</select>
+
+<select
+class="compare-select"
+id="carB"
+>
+</select>
+
+<button
+class="btn"
+onclick="compareCars()"
+>
+Comparar
+</button>
+
+</div>
+
+<div
+class="comparison"
+id="comparison"
+></div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SOBRE
+========================= -->
+
+<section
+class="container"
+id="sobre"
+>
+
+<div class="about">
+
+<h2>
+Sobre o Garage Club
+</h2>
+
+<p>
+O Garage Club é um espaço para quem ama
+carros. Aqui você pode descobrir modelos,
+conhecer suas histórias, comparar carros,
+curtir seus favoritos e compartilhar sua paixão
+pelo mundo automotivo.
+</p>
+
+</div>
+
+</section>
+
+
+<footer>
+
+Garage Club • Paixão por quatro rodas 🏁
+
+</footer>
+
+
+<!-- =========================
+     MODAL DA FICHA
+========================= -->
+
+<div
+class="modal"
+id="carModal"
+>
+
+<div class="modal-box">
+
+<div class="modal-header">
+
+<button
+class="close-modal"
+onclick="closeFicha()"
+>
+×
+</button>
+
+<h2 id="modalName">
+</h2>
+
+<p id="modalBrand">
+</p>
+
+</div>
+
+
+<div class="modal-car-image">
+
+<img
+id="modalImage"
+src=""
+alt=""
+>
+
+</div>
+
+
+<div class="full-info">
+
+
+<div
+class="info-grid"
+id="infoGrid"
+>
+</div>
+
+
+<h3>
+📖 História do carro
+</h3>
+
+<p
+id="modalHistory"
+>
+</p>
+
+
+<h3>
+💡 Curiosidades
+</h3>
+
+<p
+id="modalCuriosity"
+>
+</p>
+
+
+<h3>
+🏁 O que torna esse carro especial?
+</h3>
+
+<p
+id="modalSpecial"
+>
+</p>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   CARROS
+========================= */
+
+const cars = [
+
+{
+
+name:"BMW M3",
+
+brand:"BMW",
+
+category:"Esportivo",
+
+image:"IMG_8075.jpeg",
+
+description:
+"Um dos esportivos mais famosos da BMW, conhecido pelo equilíbrio entre desempenho e uso diário.",
+
+year:"2025",
+
+power:"503 cv",
+
+zero:"3,8 segundos",
+
+engine:"3.0 seis cilindros biturbo",
+
+speed:"250 km/h",
+
+drive:"Traseira",
+
+gear:"Automático",
+
+history:
+"A BMW M3 nasceu da divisão BMW Motorsport e se tornou uma referência entre os sedãs esportivos. Desde suas primeiras gerações, o modelo foi desenvolvido para trazer características de pista para as ruas.",
+
+curiosity:
+"O nome M3 é associado a uma das famílias esportivas mais famosas da BMW e possui uma enorme comunidade de fãs.",
+
+special:
+"O M3 consegue combinar desempenho esportivo com espaço e conforto para o uso cotidiano."
+
+},
+
+{
+
+name:"Ford Mustang",
+
+brand:"Ford",
+
+category:"Clássico",
+
+image:"IMG_8076.jpeg",
+
+description:
+"Um dos carros americanos mais conhecidos do mundo e símbolo dos muscle cars.",
+
+year:"2024",
+
+power:"480 cv",
+
+zero:"4,2 segundos",
+
+engine:"5.0 V8",
+
+speed:"250 km/h",
+
+drive:"Traseira",
+
+gear:"Manual ou automático",
+
+history:
+"O Ford Mustang foi apresentado em 1964 e rapidamente se tornou um fenômeno. Seu estilo esportivo e preço relativamente acessível ajudaram a criar uma nova categoria de carros esportivos americanos.",
+
+curiosity:
+"O Mustang é um dos nomes automotivos mais reconhecidos mundialmente e possui fãs em diversos países.",
+
+special:
+"Seu design, motor V8 e enorme história fazem dele um dos grandes símbolos da cultura automobilística americana."
+
+},
+
+{
+
+name:"Toyota Supra",
+
+brand:"Toyota",
+
+category:"JDM",
+
+image:"IMG_8077.jpeg",
+
+description:
+"Um dos esportivos japoneses mais famosos entre os fãs de JDM.",
+
+year:"2025",
+
+power:"387 cv",
+
+zero:"4,1 segundos",
+
+engine:"3.0 seis cilindros turbo",
+
+speed:"250 km/h",
+
+drive:"Traseira",
+
+gear:"Automático",
+
+history:
+"O Toyota Supra possui uma longa história dentro dos esportivos japoneses. A geração A80 ficou especialmente famosa entre os fãs de carros e preparações.",
+
+curiosity:
+"O Supra ficou ainda mais conhecido na cultura popular por sua presença em filmes, jogos e competições.",
+
+special:
+"A combinação de motor forte, tração traseira e enorme cultura de preparação tornou o Supra um dos JDM mais desejados."
+
+},
+
+{
+
+name:"Nissan GT-R",
+
+brand:"Nissan",
+
+category:"JDM",
+
+image:"IMG_8078.jpeg",
+
+description:
+"Uma das maiores referências japonesas em desempenho e tecnologia.",
+
+year:"2024",
+
+power:"565 cv",
+
+zero:"2,9 segundos",
+
+engine:"3.8 V6 biturbo",
+
+speed:"315 km/h",
+
+drive:"Integral",
+
+gear:"Automático",
+
+history:
+"O Nissan GT-R é descendente da famosa família Skyline GT-R e se tornou um dos carros esportivos japoneses mais respeitados.",
+
+curiosity:
+"O GT-R recebeu o apelido de 'Godzilla' por causa de seu desempenho capaz de enfrentar carros muito mais caros.",
+
+special:
+"Sua combinação de potência, tração integral e tecnologia eletrônica é uma das principais características do modelo."
+
+},
+
+{
+
+name:"Honda Civic Type R",
+
+brand:"Honda",
+
+category:"JDM",
+
+image:"IMG_8079.jpeg",
+
+description:
+"Uma versão de alto desempenho do Civic desenvolvida para quem gosta de dirigir.",
+
+year:"2025",
+
+power:"320 cv",
+
+zero:"5,4 segundos",
+
+engine:"2.0 turbo",
+
+speed:"275 km/h",
+
+drive:"Dianteira",
+
+gear:"Manual",
+
+history:
+"O Type R representa a filosofia esportiva da Honda e utiliza diversas soluções voltadas para desempenho e dirigibilidade.",
+
+curiosity:
+"O grande aerofólio traseiro e o visual agressivo são algumas das características mais marcantes do modelo.",
+
+special:
+"É um carro de tração dianteira capaz de oferecer uma experiência extremamente esportiva."
+
+},
+
+{
+
+name:"Chevrolet Camaro",
+
+brand:"Chevrolet",
+
+category:"Clássico",
+
+image:"IMG_8080.jpeg",
+
+description:
+"Um dos maiores representantes dos muscle cars americanos.",
+
+year:"2024",
+
+power:"461 cv",
+
+zero:"4,2 segundos",
+
+engine:"6.2 V8",
+
+speed:"290 km/h",
+
+drive:"Traseira",
+
+gear:"Automático",
+
+history:
+"O Camaro surgiu como um dos grandes concorrentes do Mustang e rapidamente ganhou seu próprio espaço entre os carros esportivos americanos.",
+
+curiosity:
+"Camaro e Mustang protagonizaram uma das rivalidades mais famosas da indústria automobilística.",
+
+special:
+"Seu motor V8, design agressivo e história fazem dele um dos muscle cars mais conhecidos."
+
+},
+
+{
+
+name:"Porsche 911",
+
+brand:"Porsche",
+
+category:"Luxo",
+
+image:"IMG_8081.jpeg",
+
+description:
+"Um dos esportivos mais tradicionais e reconhecidos do mundo.",
+
+year:"2025",
+
+power:"480 cv",
+
+zero:"3,4 segundos",
+
+engine:"3.0 biturbo",
+
+speed:"308 km/h",
+
+drive:"Traseira",
+
+gear:"PDK",
+
+history:
+"O Porsche 911 surgiu na década de 1960 e passou por diversas gerações mantendo sua identidade visual e mecânica.",
+
+curiosity:
+"Mesmo depois de décadas, o formato característico do 911 continua sendo facilmente reconhecido.",
+
+special:
+"Poucos carros conseguem unir tradição, desempenho e luxo durante tantas gerações."
+
+},
+
+{
+
+name:"Lamborghini Huracán",
+
+brand:"Lamborghini",
+
+category:"Luxo",
+
+image:"IMG_8082.jpeg",
+
+description:
+"Superesportivo italiano conhecido pelo design agressivo e motor V10.",
+
+year:"2024",
+
+power:"640 cv",
+
+zero:"2,9 segundos",
+
+engine:"5.2 V10",
+
+speed:"325 km/h",
+
+drive:"Integral",
+
+gear:"Automático",
+
+history:
+"A Huracán é uma das linhas mais conhecidas da Lamborghini e foi criada para combinar desempenho extremo com o estilo característico da marca italiana.",
+
+curiosity:
+"O motor V10 aspirado é uma das características mais admiradas pelos fãs do modelo.",
+
+special:
+"O design, o som do V10 e o desempenho fazem da Huracán uma verdadeira experiência de supercarro."
+
+},
+
+{
+
+name:"BMW M4",
+
+brand:"BMW",
+
+category:"Esportivo",
+
+image:"IMG_8083.jpeg",
+
+description:
+"Cupê esportivo com visual agressivo, tecnologia e alto desempenho.",
+
+year:"2025",
+
+power:"503 cv",
+
+zero:"3,8 segundos",
+
+engine:"3.0 seis cilindros biturbo",
+
+speed:"290 km/h",
+
+drive:"Traseira ou integral",
+
+gear:"Automático",
+
+history:
+"O BMW M4 representa a versão esportiva do tradicional cupê da marca e faz parte da família BMW M.",
+
+curiosity:
+"Dependendo da configuração, o M4 pode oferecer tração traseira ou integral.",
+
+special:
+"É uma combinação de carro esportivo, tecnologia e conforto para o uso cotidiano."
+
+}
+
+];
+
+
+/* =========================
+   DADOS
+========================= */
+
+let currentCategory="Todos";
+
+let liked=
+JSON.parse(
+localStorage.getItem("garageLiked") || "[]"
+);
+
+let favorites=
+JSON.parse(
+localStorage.getItem("garageFavorites") || "[]"
+);
+
+let comments=
+JSON.parse(
+localStorage.getItem("garageComments") || "{}"
+);
+
+
+/* =========================
+   MOSTRAR CARROS
+========================= */
+
+function renderCars(){
+
+const grid=
+document.getElementById("grid");
+
+const search=
+document
+.getElementById("search")
+.value
+.toLowerCase()
+.trim();
+
+
+const filtered=
+cars.filter(car=>{
+
+const categoryOK=
+currentCategory==="Todos" ||
+car.category===currentCategory;
+
+
+const searchOK=
+car.name
+.toLowerCase()
+.includes(search)
+||
+car.brand
+.toLowerCase()
+.includes(search)
+||
+car.category
+.toLowerCase()
+.includes(search);
+
+
+return categoryOK && searchOK;
+
+});
+
+
+if(filtered.length===0){
+
+grid.innerHTML=
+`
+<div style="
+grid-column:1/-1;
+padding:40px;
+text-align:center;
+color:#888;
+">
+Nenhum carro encontrado 😕
+</div>
+`;
+
+return;
+
+}
+
+
+grid.innerHTML=
+filtered
+.map((car,index)=>{
+
+const isLiked=
+liked.includes(car.name);
+
+const isFavorite=
+favorites.includes(car.name);
+
+const carComments=
+comments[car.name] || [];
+
+
+return `
+
+<article class="card">
+
+
+<div class="car-image">
+
+<span class="badge">
+${car.category}
+</span>
+
+<img
+src="${car.image}"
+alt="${car.name}"
+>
+
+</div>
+
+
+<div class="card-body">
+
+
+<div class="brand">
+${car.brand}
+</div>
+
+
+<h3>
+${car.name}
+</h3>
+
+
+<p class="card-description">
+${car.description}
+</p>
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<strong>
+${car.power}
+</strong>
+
+Potência
+
+</div>
+
+
+<div class="stat">
+
+<strong>
+${car.zero}
+</strong>
+
+0–100
+
+</div>
+
+
+<div class="stat">
+
+<strong>
+${car.engine}
+</strong>
+
+Motor
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+
+<button
+class="action-btn"
+onclick="openFicha('${car.name}')"
+>
+📋 Ver ficha completa
+</button>
+
+
+<button
+class="action-btn like-btn
+${isLiked ? "liked":""}"
+onclick="toggleLike('${car.name}')"
+title="Curtir"
+>
+${isLiked ? "❤️":"♡"}
+</button>
+
+
+<button
+class="action-btn favorite-btn
+${isFavorite ? "favorited":""}"
+onclick="toggleFavorite('${car.name}')"
+title="Favoritar"
+>
+${isFavorite ? "⭐":"☆"}
+</button>
+
+
+</div>
+
+
+<div
+class="comments"
+>
+
+
+<div class="comments-title">
+💬 Comentários
+</div>
+
+
+<div class="comment-row">
+
+<input
+id="comment-${index}"
+placeholder="Escreva um comentário..."
+>
+
+<button
+onclick="addComment('${car.name}',${index})"
+>
+Enviar
+</button>
+
+</div>
+
+
+<div class="comment-list">
+
+${
+carComments.length
+?
+carComments
+.map(c=>
+`<div>
+<b>${escapeHTML(c)}</b>
+</div>`
+)
+.join("")
+:
+""
+}
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</article>
+
+`;
+
+})
+.join("");
+
+}
+
+
+/* =========================
+   CURTIR
+========================= */
+
+function toggleLike(name){
+
+if(liked.includes(name)){
+
+liked=
+liked.filter(
+item=>item!==name
+);
+
+}else{
+
+liked.push(name);
+
+}
+
+localStorage.setItem(
+"garageLiked",
+JSON.stringify(liked)
+);
+
+renderCars();
+
+}
+
+
+/* =========================
+   FAVORITAR
+========================= */
+
+function toggleFavorite(name){
+
+if(favorites.includes(name)){
+
+favorites=
+favorites.filter(
+item=>item!==name
+);
+
+}else{
+
+favorites.push(name);
+
+}
+
+localStorage.setItem(
+"garageFavorites",
+JSON.stringify(favorites)
+);
+
+renderCars();
+
+renderFavorites();
+
+}
+
+
+/* =========================
+   FAVORITOS
+========================= */
+
+function renderFavorites(){
+
+const list=
+document.getElementById(
+"favoriteList"
+);
+
+
+if(favorites.length===0){
+
+list.innerHTML=
+`
+<div style="
+color:#888;
+padding:15px 0;
+">
+Você ainda não favoritou nenhum carro. ❤️
+</div>
+`;
+
+return;
+
+}
+
+
+list.innerHTML=
+favorites
+.map(name=>{
+
+const car=
+cars.find(
+item=>item.name===name
+);
+
+return `
+
+<div class="favorite-item">
+
+<span>
+⭐ ${car.name}
+</span>
+
+<button
+onclick="openFicha('${car.name}')"
+>
+Ver ficha
+</button>
+
+<button
+onclick="toggleFavorite('${car.name}')"
+>
+×
+</button>
+
+</div>
+
+`;
+
+})
+.join("");
+
+}
+
+
+/* =========================
+   FICHA COMPLETA
+========================= */
+
+function openFicha(name){
+
+const car=
+cars.find(
+item=>item.name===name
+);
+
+if(!car)return;
+
+
+document
+.getElementById("modalName")
+.textContent=
+car.name;
+
+
+document
+.getElementById("modalBrand")
+.textContent=
+car.brand+
+" • "+
+car.category;
+
+
+document
+.getElementById("modalImage")
+.src=
+car.image;
+
+
+document
+.getElementById("modalImage")
+.alt=
+car.name;
+
+
+/* INFORMAÇÕES */
+
+document
+.getElementById("infoGrid")
+.innerHTML=
+
+`
+
+<div class="info-box">
+<small>ANO</small>
+<strong>${car.year}</strong>
+</div>
+
+<div class="info-box">
+<small>POTÊNCIA</small>
+<strong>${car.power}</strong>
+</div>
+
+<div class="info-box">
+<small>0–100 KM/H</small>
+<strong>${car.zero}</strong>
+</div>
+
+<div class="info-box">
+<small>MOTOR</small>
+<strong>${car.engine}</strong>
+</div>
+
+<div class="info-box">
+<small>VELOCIDADE MÁXIMA</small>
+<strong>${car.speed}</strong>
+</div>
+
+<div class="info-box">
+<small>TRAÇÃO</small>
+<strong>${car.drive}</strong>
+</div>
+
+<div class="info-box">
+<small>CÂMBIO</small>
+<strong>${car.gear}</strong>
+</div>
+
+`;
+
+
+document
+.getElementById("modalHistory")
+.textContent=
+car.history;
+
+
+document
+.getElementById("modalCuriosity")
+.textContent=
+car.curiosity;
+
+
+document
+.getElementById("modalSpecial")
+.textContent=
+car.special;
+
+
+document
+.getElementById("carModal")
+.classList.add("show");
+
+}
+
+
+/* =========================
+   FECHAR FICHA
+========================= */
+
+function closeFicha(){
+
+document
+.getElementById("carModal")
+.classList.remove("show");
+
+}
+
+
+/* =========================
+   COMENTÁRIOS
+========================= */
+
+function addComment(name,index){
+
+const input=
+document
+.getElementById(
+"comment-"+index
+);
+
+
+const text=
+input.value.trim();
+
+
+if(!text)return;
+
+
+if(!comments[name]){
+
+comments[name]=[];
+
+}
+
+
+comments[name].push(text);
+
+
+localStorage.setItem(
+"garageComments",
+JSON.stringify(comments)
+);
+
+
+input.value="";
+
+
+renderCars();
+
+}
+
+
+/* =========================
+   COMPARAR
+========================= */
+
+function setupCompare(){
+
+const a=
+document.getElementById("carA");
+
+const b=
+document.getElementById("carB");
+
+
+const options=
+cars
+.map(car=>
+`
+<option value="${car.name}">
+${car.name}
+</option>
+`
+)
+.join("");
+
+
+a.innerHTML=options;
+
+b.innerHTML=options;
+
+
+if(cars.length>1){
+
+b.selectedIndex=1;
+
+}
+
+}
+
+
+function compareCars(){
+
+const nameA=
+document.getElementById(
+"carA"
+).value;
+
+
+const nameB=
+document.getElementById(
+"carB"
+).value;
+
+
+const carA=
+cars.find(
+car=>car.name===nameA
+);
+
+
+const carB=
+cars.find(
+car=>car.name===nameB
+);
+
+
+if(!carA || !carB)return;
+
+
+document
+.getElementById("comparison")
+.innerHTML=
+
+`
+
+<table>
+
+<tr>
+
+<th>Informação</th>
+
+<th>${carA.name}</th>
+
+<th>${carB.name}</th>
+
+</tr>
+
+
+<tr>
+
+<td>Marca</td>
+
+<td>${carA.brand}</td>
+
+<td>${carB.brand}</td>
+
+</tr>
+
+
+<tr>
+
+<td>Categoria</td>
+
+<td>${carA.category}</td>
+
+<td>${carB.category}</td>
+
+</tr>
+
+
+<tr>
+
+<td>Potência</td>
+
+<td>${carA.power}</td>
+
+<td>${carB.power}</td>
+
+</tr>
+
+
+<tr>
+
+<td>0–100 km/h</td>
+
+<td>${carA.zero}</td>
+
+<td>${carB.zero}</td>
+
+</tr>
+
+
+<tr>
+
+<td>Motor</td>
+
+<td>${carA.engine}</td>
+
+<td>${carB.engine}</td>
+
+</tr>
+
+
+<tr>
+
+<td>Velocidade máxima</td>
+
+<td>${carA.speed}</td>
+
+<td>${carB.speed}</td>
+
+</tr>
+
+
+<tr>
+
+<td>Tração</td>
+
+<td>${carA.drive}</td>
+
+<td>${carB.drive}</td>
+
+</tr>
+
+
+<tr>
+
+<td>Câmbio</td>
+
+<td>${carA.gear}</td>
+
+<td>${carB.gear}</td>
+
+</tr>
+
+</table>
+
+`;
+
+}
+
+
+/* =========================
+   PESQUISA
+========================= */
+
+document
+.getElementById("search")
+.addEventListener(
+"input",
+renderCars
+);
+
+
+/* =========================
+   CATEGORIAS
+========================= */
+
+document
+.querySelectorAll(".filter")
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+()=>{
+
+document
+.querySelectorAll(".filter")
+.forEach(
+item=>
+item.classList.remove("active")
+);
+
+
+button.classList.add("active");
+
+
+currentCategory=
+button.dataset.category;
+
+
+renderCars();
+
+}
+);
+
+});
+
+
+/* =========================
+   FECHAR MODAL
+========================= */
+
+document
+.getElementById("carModal")
+.addEventListener(
+"click",
+event=>{
+
+if(
+event.target.id===
+"carModal"
+){
+
+closeFicha();
+
+}
+
+});
+
+
+document.addEventListener(
+"keydown",
+event=>{
+
+if(event.key==="Escape"){
+
+closeFicha();
+
+}
+
+});
+
+
+/* =========================
+   SEGURANÇA
+========================= */
+
+function escapeHTML(text){
+
+return text
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   INICIAR
+========================= */
+
+setupCompare();
+
+renderCars();
+
+renderFavorites();
+
+</script>
+
+</body>
+</html>
